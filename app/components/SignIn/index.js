@@ -13,19 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -60,7 +50,7 @@ const theme = createMuiTheme({
   }
 });
 
-export default function SignIn() {
+export default function SignIn({ signIn }) {
   const classes = useStyles();
 
   return (
@@ -74,60 +64,102 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
+          <Formik
+            initialValues={{ username: '', password: '' }}
+            validationSchema={Yup.object({
+              username: Yup.string().required('Required!'),
+              password: Yup.string().required('Required!'),
+            })}
+            onSubmit={(values, { setSubmitting }) => {
+              setSubmitting(false);
+              signIn({ ...values });
+            }}
+            >{({
+                       values,
+                       isSubmitting,
+                       handleSubmit,
+                       touched,
+                       errors,
+                       handleChange,
+                       handleBlur,
+                     }) => (
+              <form className={classes.form} onSubmit={handleSubmit}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  helperText={touched.username ? errors.username : ''}
+                  error={touched.username && Boolean(errors.username)}
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete="username"
+                  autoFocus
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  helperText={touched.password ? errors.password : ''}
+                  error={touched.password && Boolean(errors.password)}
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      id="remember"
+                      name="remember"
+                      value={values.remember}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      color="primary"
+                    />
+                  }
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  disabled={isSubmitting}
+                >
+                  Sign In
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </form>
+            )}
+          </Formik>
         </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
       </Container>
     </ThemeProvider>
   );
+}
+
+SignIn.propTypes = {
+  signIn : PropTypes.func.isRequired,
 }

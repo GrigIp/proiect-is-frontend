@@ -73,6 +73,7 @@
     "containers": "0.0.1",
     "express": "4.16.4",
     "fontfaceobserver": "2.1.0",
+    "formik": "^2.0.3",
     "history": "4.9.0",
     "hoist-non-react-statics": "3.3.0",
     "immer": "3.0.0",
@@ -81,6 +82,7 @@
     "ip": "1.1.5",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
+    "normalizr": "^3.4.1",
     "pngquant-bin": "^5.0.2",
     "prop-types": "15.7.2",
     "react": "16.8.6",
@@ -93,7 +95,8 @@
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
-    "styled-components": "4.2.0"
+    "styled-components": "4.2.0",
+    "yup": "latest"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",
