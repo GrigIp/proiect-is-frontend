@@ -2,25 +2,23 @@ import { AbstractAPIService } from "./abstractAPIService";
 
 export class AuthService extends AbstractAPIService {
   async authorize({ username, password, remember }) {
-    console.log(username, password, ' in authService');
-    const { payload: data } = await this.get('/test');
+    const body = {username, password};
+
+    const { payload: data } = await this.post('/login', body);
 
     if (data.token) {
       localStorage.setItem('token', data.token);
 
-      //const { payload: users } = await this.get('/users');
-      //const user = users.find(u => u.email === email);
+      const user = data.user;
 
-      this.currentLevel = data.level;
+      this.currentRole = data.role;
     }
-
-    console.log(data, ' in authService ');
 
     return data;
   }
 
   getCurrentLevel() {
-    return this.currentLevel;
+    return this.currentRole;
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SignInComponent from 'components/SignIn/Loadable';
-import {Snackbar} from "@material-ui/core";
+import SnackBar from "../../components/Snackbar";
 import makeSelectSignIn from "./selectors";
 import saga from './saga';
 import injectSaga from 'utils/injectSaga';
@@ -10,6 +10,8 @@ import reducer from './reducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { signIn } from "./actions";
+import { Redirect } from 'react-router-dom';
+
 
 export class SignIn extends React.Component {
   signIn({ username, password, remember }) {
@@ -23,7 +25,7 @@ export class SignIn extends React.Component {
 
     return (
       <div>
-        <Snackbar variant="error" message={ this.props.error } />
+        <SnackBar variant="error" message={ this.props.error }/>
         <SignInComponent signIn={ params => this.signIn(params) }/>
       </div>
     )

@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 import utcn from '../../images/utcn-logo.png';
 
@@ -51,7 +52,12 @@ export default function NavBar() {
             <Typography variant="h6" className={classes.title}>
               SINU
             </Typography>
-            <Button color="inherit">Sign In</Button>
+            <Button color="inherit" to="/" component={Link} >
+              Home
+            </Button>
+            <Button color="inherit" to="/signin" component={Link} >
+              Sign In
+            </Button>
           </Toolbar>
         </AppBar>
       </div>

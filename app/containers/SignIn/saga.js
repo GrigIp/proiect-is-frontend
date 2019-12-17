@@ -4,7 +4,6 @@ import authService from '../../services/authService';
 
 function *authorize({ payload }){
   try{
-    console.log('saga ajunge in saga ')
     const { token } = yield call(() =>
       authService.authorize(payload),
     );

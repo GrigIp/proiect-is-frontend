@@ -4,6 +4,7 @@ const initialState = {};
 
 const selectSignInDomain = state => state.signIn || initialState;
 
+
 const makeSelectSignIn = () =>
   createSelector(
     selectSignInDomain,
