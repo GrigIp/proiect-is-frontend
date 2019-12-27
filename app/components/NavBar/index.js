@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import utcn from '../../images/utcn-logo.png';
 
@@ -37,30 +38,68 @@ const theme = createMuiTheme({
   }
 });
 
-export default function NavBar() {
+export default function NavBar({ authenticated }) {
   const classes = useStyles();
+  if (authenticated) {
+    return (
+      <ThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <MenuIcon/>
+              </IconButton>
+              <img src={utcn} alt={'logo'} className={classes.image}/>
+              <Typography variant="h6" className={classes.title}>
+                SINU
+              </Typography>
+              <Button color="inherit" to="/" component={Link}>
+                Home
+              </Button>
+              <Button color="inherit" to="/" component={Link}>
+                Group
+              </Button>
+              <Button color="inherit" to="/" component={Link}>
+                Grades
+              </Button>
+              <Button color="inherit" to="/" component={Link}>
+                Schedule
+              </Button>
+              <Button color="inherit" to="/" component={Link}>
+                Subjects
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </div>
+      </ThemeProvider>
+    );
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <MenuIcon/>
+              </IconButton>
+              <img src={utcn} alt={'logo'} className={classes.image}/>
+              <Typography variant="h6" className={classes.title}>
+                SINU
+              </Typography>
+              <Button color="inherit" to="/" component={Link}>
+                Home
+              </Button>
+              <Button color="inherit" to="/signin" component={Link}>
+                Sign In
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </div>
+      </ThemeProvider>
+    );
+  }
+}
 
-  return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            <img src={utcn} alt={'logo'} className={classes.image}/>
-            <Typography variant="h6" className={classes.title}>
-              SINU
-            </Typography>
-            <Button color="inherit" to="/" component={Link} >
-              Home
-            </Button>
-            <Button color="inherit" to="/signin" component={Link} >
-              Sign In
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </div>
-    </ThemeProvider>
-  );
+NavBar.propTypes = {
+  authenticated : PropTypes.bool.isRequired,
 }
