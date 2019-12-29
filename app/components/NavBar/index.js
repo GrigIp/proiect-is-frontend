@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  toolbar: {
+    maxHeight: 40,
+  },
   title: {
     flexGrow: 1,
     margin: '2%'
@@ -45,7 +48,7 @@ export default function NavBar({ authenticated }) {
       <ThemeProvider theme={theme}>
         <div className={classes.root}>
           <AppBar position="static">
-            <Toolbar>
+            <Toolbar className={classes.toolbar}>
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon/>
               </IconButton>

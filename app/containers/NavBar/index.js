@@ -1,6 +1,12 @@
 import NavBarComponent from 'components/NavBar';
 import React from 'react';
-import makeSelectSignIn from "../SignIn/selectors";
+import reducer from '../SignIn/reducer';
+import makeSelectSignIn from '../SignIn/selectors';
+import saga from '../SignIn/saga';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 
 class NavBar extends React.Component {
   state = {
@@ -9,16 +15,27 @@ class NavBar extends React.Component {
 
   componentWillReceiveProps(newProps) {
     const oldProps = this.props;
-    if (oldProps.token !== newProps.token){
+    if (oldProps.token !== newProps.token) {
       this.setState({
-        authenticated : Boolean(localStorage.getItem('token'))
+        authenticated: Boolean(localStorage.getItem('token')),
       });
     }
   }
 
   render() {
-      return <NavBarComponent authenticated={true}/>;
+      return <NavBarComponent authenticated={this.state.authenticated}/>;
   }
 }
+
 const mapStateToProps = makeSelectSignIn();
-export default NavBar;
+
+const withSaga = injectSaga({ key: 'signIn', saga });
+const withReducer = injectReducer({ key: 'signIn', reducer });
+
+const withConnect = connect(mapStateToProps);
+
+export default compose(
+  withConnect,
+  withReducer,
+  withSaga,
+)(NavBar);
