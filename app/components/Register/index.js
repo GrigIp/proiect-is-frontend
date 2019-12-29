@@ -20,6 +20,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -39,13 +40,14 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    margin: theme.spacing(0)
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
   formControl: {
-    margin: theme.spacing(1),
+    marginLeft: theme.spacing(0),
+    marginTop: theme.spacing(1.5),
     minWidth: 120,
   }
 }));
@@ -191,7 +193,10 @@ export default function Register({ register }) {
                 onBlur={handleBlur}
                 autoComplete="current-password"
               />
-              <FormControl variant="outlined" className={classes.formControl}>
+              <FormControl variant="outlined"
+                           className={classes.formControl}
+                           error = {!!errors.role}
+                           margin={'none'}>
                 <InputLabel id="demo-simple-select-outlined-label">
                   Role
                 </InputLabel>
@@ -203,7 +208,6 @@ export default function Register({ register }) {
                   label="Role"
                   type="role"
                   id="role"
-                  error={touched.role && Boolean(errors.role)}
                   value={values.role}
                   onChange={handleChange}
                 >
@@ -211,6 +215,7 @@ export default function Register({ register }) {
                   <MenuItem value={"PROFESSOR"}>Professor</MenuItem>
                   <MenuItem value={"ADMIN"}>Admin</MenuItem>
                 </Select>
+                { errors.role ? <FormHelperText>{errors.role}</FormHelperText> : '' }
               </FormControl>
               <Button
                 type="submit"
