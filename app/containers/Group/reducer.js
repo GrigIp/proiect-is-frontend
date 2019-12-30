@@ -9,7 +9,7 @@ import {
 export const initialState = {};
 
 /* eslint-disable default-case, no-param-reassign */
-const groupsListViewReducer = (state = initialState, action) =>
+const groupsReducer = (state = initialState, action) =>
   produce(state, (/* draft */) => {
     switch (action.type) {
       case FETCH_STUDENTS_SUCCESS:
@@ -24,4 +24,4 @@ const groupsListViewReducer = (state = initialState, action) =>
     }
   });
 
-export default groupsListViewReducer;
+export default groupReducer;

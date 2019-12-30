@@ -33,7 +33,7 @@ function* fetchStudentsByGroupId({ payload: id }) {
 }
 
 // Individual exports for testing
-export default function* groupsListViewSaga() {
+export default function* groupSaga() {
   yield takeLatest(FETCH_GROUP_REQUEST, fetchGroupByUsername);
   yield takeLatest(FETCH_STUDENTS_REQUEST, fetchStudentsByGroupId);
 }
