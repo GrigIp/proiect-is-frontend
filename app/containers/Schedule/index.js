@@ -43,9 +43,14 @@ class Schedule extends React.Component {
                             label: 'Faculty:',
                           }
                         ]}
-                        tableData={[{firstName: 'Grigor', lastName: 'Ipatiov', email: 'ipatiov.grigor@yahoo.com'}]}
-                        tableHeader={['First Name', 'Last Name', 'Email']}
-                        tableTitle={'Group'}/>;
+                        tableData={[{hour: '08:00', d1: 'Ac', d2: 'ssc', d3:'pg', d4:'-', d5:'can'},
+                                    {hour: '10:00', d1: 'Ac', d2: 'ssc', d3:'pg', d4:'-', d5:'can'},
+                                    {hour: '12:00', d1: 'Ac', d2: 'ssc', d3:'pg', d4:'-', d5:'can'},
+                                    {hour: '14:00', d1: 'Ac', d2: 'ssc', d3:'pg', d4:'-', d5:'can'},
+                                    {hour: '16:00', d1: 'Ac', d2: 'ssc', d3:'pg', d4:'-', d5:'can'},
+                                    {hour: '18:00', d1: 'Ac', d2: 'ssc', d3:'pg', d4:'-', d5:'can'},]}
+                        tableHeader={['      ','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}
+                        tableTitle={'Schedule'}/>;
   }
 }
 
