@@ -1,0 +1,3 @@
+export const FETCH_GRADES_REQUEST = 'app/Grades/FETCH_GRADES_REQUEST';
+export const FETCH_GRADES_SUCCESS = 'app/Grades/FETCH_GRADES_SUCCESS';
+export const FETCH_GRADES_FAILURE = 'app/Grades/FETCH_GRADES_FAILURE';
