@@ -13,6 +13,7 @@ import GlobalStyle from '../../global-styles';
 import SignIn from 'containers/SignIn/index';
 import NavBar from 'containers/NavBar/index';
 import HomePage from 'containers/HomePage/index';
+import Group from 'containers/Group/index';
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
      <Switch>
        <Route exact path='/' component={HomePage} />
        <Route path='/signin' component={SignIn} />
+       <Route exact path='/group' component={Group} />
      </Switch>
      <GlobalStyle/>
    </div>
