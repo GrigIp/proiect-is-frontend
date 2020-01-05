@@ -50,7 +50,7 @@ class Grades extends React.Component {
 }
 
 
-Group.propTypes = {
+Grades.propTypes = {
   fetchGrades: PropTypes.func.isRequired,
   grades: PropTypes.array,
   error: PropTypes.string,
