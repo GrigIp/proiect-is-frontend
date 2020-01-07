@@ -57,7 +57,12 @@ export default function DisplaySchedule({
                                       tableTitle,
                                       fields = [],
                                       tableHeader = [],
-                                      tableData = [],
+                                      fromEight = [],
+                                      fromTen = [],
+                                      fromTwelve = [],
+                                      fromTwo = [],
+                                      fromFour = [],
+                                      fromSix = [],
                                     }) {
   const classes = useStyles();
 
@@ -86,16 +91,6 @@ export default function DisplaySchedule({
             </Grid>
           ))}
         </Paper>
-        {tableData.length === 0 ? (
-          <Typography
-            variant="body1"
-            color="inherit"
-            className={classes.title}
-            noWrap
-          >
-            {error}
-          </Typography>
-        ) : (
           <React.Fragment>
             <Typography
               variant="body1"
@@ -114,19 +109,106 @@ export default function DisplaySchedule({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {tableData.map(row => (
-                  <TableRow key={row.id}>
-                    {Object.keys(row).map(key =>
-                      key === 'id' ? null : (
-                        <TableCell key={row[key]}>{row[key]}</TableCell>
-                      ),
-                    )}
-                  </TableRow>
-                ))}
+                <TableRow></TableRow>
+                <TableRow>
+                  <TableCell>08:00</TableCell>
+                  {fromEight.map((elem) => {
+                    if(elem === '-') {
+                      return <TableCell>-</TableCell>;
+                    }
+
+                    return <TableCell>
+                            <div>Subj: {elem.name}</div>
+                            <div>Type: {elem.type}</div>
+                            <div>Location: {elem.location}</div>
+                            <div>{elem.weeks} weeks</div>
+                            <div>Teacher: {elem.professor}</div>
+                          </TableCell>
+                  })}
+                </TableRow>
+                <TableRow>
+                  <TableCell>10:00</TableCell>
+                  {fromTen.map((elem) => {
+                    if(elem === '-') {
+                      return <TableCell>-</TableCell>;
+                    }
+
+                    return <TableCell>
+                      <div>Subj: {elem.name}</div>
+                      <div>Type: {elem.type}</div>
+                      <div>Location: {elem.location}</div>
+                      <div>{elem.weeks} weeks</div>
+                      <div>Teacher: {elem.professor}</div>
+                    </TableCell>
+                  })}
+                </TableRow>
+                <TableRow>
+                  <TableCell>12:00</TableCell>
+                  {fromTwelve.map((elem) => {
+                    if(elem === '-') {
+                      return <TableCell>-</TableCell>;
+                    }
+
+                    return <TableCell>
+                      <div>Subj: {elem.name}</div>
+                      <div>Type: {elem.type}</div>
+                      <div>Location: {elem.location}</div>
+                      <div>{elem.weeks} weeks</div>
+                      <div>Teacher: {elem.professor}</div>
+                    </TableCell>
+                  })}
+                </TableRow>
+                <TableRow>
+                  <TableCell>14:00</TableCell>
+                  {fromTwo.map((elem) => {
+                    if(elem === '-') {
+                      return <TableCell>-</TableCell>;
+                    }
+
+                    return <TableCell>
+                      <div>Subj: {elem.name}</div>
+                      <div>Type: {elem.type}</div>
+                      <div>Location: {elem.location}</div>
+                      <div>{elem.weeks} weeks</div>
+                      <div>Teacher: {elem.professor}</div>
+                    </TableCell>
+                  })}
+                </TableRow>
+                <TableRow>
+                  <TableCell>16:00</TableCell>
+                  {fromFour.map((elem) => {
+                    if(elem === '-') {
+                      return <TableCell>-</TableCell>;
+                    }
+
+                    return <TableCell>
+                      <div>Subj: {elem.name}</div>
+                      <div>Type: {elem.type}</div>
+                      <div>Location: {elem.location}</div>
+                      <div>{elem.weeks} weeks</div>
+                      <div>Teacher: {elem.professor}</div>
+                    </TableCell>
+                  })}
+                </TableRow>
+                <TableRow>
+                  <TableCell>18:00</TableCell>
+                  {fromSix.map((elem) => {
+                    if(elem === '-') {
+                      return <TableCell>-</TableCell>;
+                    }
+
+                    return <TableCell>
+                      <div>Subj: {elem.name}</div>
+                      <div>Type: {elem.type}</div>
+                      <div>Location: {elem.location}</div>
+                      <div>{elem.weeks} weeks</div>
+                      <div>Teacher: {elem.professor}</div>
+                    </TableCell>
+                  })}
+                </TableRow>
               </TableBody>
             </Table>
           </React.Fragment>
-        )}
       </main>
     </>
   );
@@ -135,7 +217,12 @@ export default function DisplaySchedule({
 DisplaySchedule.propTypes = {
   error: PropTypes.string,
   tableTitle: PropTypes.string,
-  tableData: PropTypes.array,
   tableHeader: PropTypes.array,
   fields: PropTypes.array,
+  fromEight: PropTypes.array,
+  fromTen: PropTypes.array,
+  fromTwelve: PropTypes.array,
+  fromTwo: PropTypes.array,
+  fromFour: PropTypes.array,
+  fromSix: PropTypes.array,
 };
