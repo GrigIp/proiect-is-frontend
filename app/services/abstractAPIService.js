@@ -43,7 +43,7 @@ export class AbstractAPIService {
   }
 
   get(url, queryparams = {}, headers = {}) {
-    const request = this.prepareRequest(url, 'GET', body, queryparams, headers);
+    const request = this.prepareRequest(url, 'GET', queryparams, headers);
 
     return this.fetchData(request);
   }

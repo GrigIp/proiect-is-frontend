@@ -8,9 +8,9 @@ import { ScheduleService } from '../../services/scheduleService';
 
 const scheduleService = new ScheduleService();
 
-function* fetchSchedule({ payload: username, role}) {
+function* fetchSchedule({ payload: { username, role }}) {
   try {
-    const schedule = yield call(() => scheduleService.fetchSchedule(username, role));
+    const { payload: schedule } = yield call(() => scheduleService.fetchSchedule(username, role))
     yield put({ type: FETCH_SCHEDULE_SUCCESS, payload: schedule });
   } catch (error) {
     yield put({ type: FETCH_SCHEDULE_FAILURE, payload: error.message });
