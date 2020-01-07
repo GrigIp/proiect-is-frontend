@@ -13,6 +13,7 @@ import GlobalStyle from '../../global-styles';
 import SignIn from 'containers/SignIn/index';
 import NavBar from 'containers/NavBar/index';
 import HomePage from 'containers/HomePage/index';
+import Register from 'containers/Register/index';
 
 export default function App() {
 
@@ -21,6 +22,7 @@ export default function App() {
      <NavBar />
      <Switch>
        <Route exact path='/' component={HomePage} />
+       <Route path= '/register' component={Register} />
        <Route path='/signin' component={SignIn} />
      </Switch>
      <GlobalStyle/>
