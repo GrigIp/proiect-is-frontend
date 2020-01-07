@@ -8,22 +8,38 @@ function searchTime(time, myArray){
   return '-';
 }
 
-function scheduleDataForTable(obj) {
-  const {scheduleId : { teaching : {class_name : {type, subject: { name }}, professor: {firstName, lastName}} }} = obj;
+function scheduleDataForTable(obj, role) {
+  const {scheduleId : { group : { id, seriesID, year, faculty }, teaching : {class_name : {type, subject: { name }}, professor: {firstName, lastName}} }} = obj;
   const { location, parity } = obj;
-  const data = { name,
-                 type: type.toLowerCase(),
-                 location,
-                 weeks: parity.toLowerCase(),
-                 professor: `${firstName} ${lastName}`};
+  let data;
+  if (role === 'STUDENT') {
+    data = { name,
+             type: type.toLowerCase(),
+             location,
+             weeks: parity.toLowerCase(),
+             professor: `${firstName} ${lastName}`};
+  } else {
+    data = { name,
+             type: type.toLowerCase(),
+             location,
+             weeks: parity.toLowerCase(),
+             faculty,
+             year };
+    if (type === 'COURSE') {
+      data = {...data, series: seriesID};
+    } else {
+      data = {...data, group: id};
+    }
+  }
+
   return data;
 }
 
-const buildHourArray = (arr0, arr1, arr2, arr3, arr4, time) => {
+const buildHourArray = (arr0, arr1, arr2, arr3, arr4, time, role) => {
   let hourArr = [];
   let subj = searchTime(time, arr0);
   if ( subj !== '-') {
-    hourArr.push(scheduleDataForTable(subj));
+    hourArr.push(scheduleDataForTable(subj, role));
   } else {
     hourArr.push(subj);
   }

@@ -117,13 +117,9 @@ export default function DisplaySchedule({
                       return <TableCell>-</TableCell>;
                     }
 
-                    return <TableCell>
-                            <div>Subj: {elem.name}</div>
-                            <div>Type: {elem.type}</div>
-                            <div>Location: {elem.location}</div>
-                            <div>{elem.weeks} weeks</div>
-                            <div>Teacher: {elem.professor}</div>
-                          </TableCell>
+                    return (<TableCell>
+                      {Object.keys(elem).map((prop) => <div>{prop.charAt(0).toUpperCase() + prop.slice(1)}: {elem[prop]}</div>)}
+                          </TableCell>);
                   })}
                 </TableRow>
                 <TableRow>
@@ -133,13 +129,9 @@ export default function DisplaySchedule({
                       return <TableCell>-</TableCell>;
                     }
 
-                    return <TableCell>
-                      <div>Subj: {elem.name}</div>
-                      <div>Type: {elem.type}</div>
-                      <div>Location: {elem.location}</div>
-                      <div>{elem.weeks} weeks</div>
-                      <div>Teacher: {elem.professor}</div>
-                    </TableCell>
+                    return (<TableCell>
+                      {Object.keys(elem).map((prop) => <div>{prop.charAt(0).toUpperCase() + prop.slice(1)}: {elem[prop]}</div>)}
+                    </TableCell>);
                   })}
                 </TableRow>
                 <TableRow>
@@ -149,13 +141,9 @@ export default function DisplaySchedule({
                       return <TableCell>-</TableCell>;
                     }
 
-                    return <TableCell>
-                      <div>Subj: {elem.name}</div>
-                      <div>Type: {elem.type}</div>
-                      <div>Location: {elem.location}</div>
-                      <div>{elem.weeks} weeks</div>
-                      <div>Teacher: {elem.professor}</div>
-                    </TableCell>
+                    return (<TableCell>
+                      {Object.keys(elem).map((prop) => <div>{prop.charAt(0).toUpperCase() + prop.slice(1)}: {elem[prop]}</div>)}
+                    </TableCell>);
                   })}
                 </TableRow>
                 <TableRow>
@@ -165,13 +153,9 @@ export default function DisplaySchedule({
                       return <TableCell>-</TableCell>;
                     }
 
-                    return <TableCell>
-                      <div>Subj: {elem.name}</div>
-                      <div>Type: {elem.type}</div>
-                      <div>Location: {elem.location}</div>
-                      <div>{elem.weeks} weeks</div>
-                      <div>Teacher: {elem.professor}</div>
-                    </TableCell>
+                    return (<TableCell>
+                      {Object.keys(elem).map((prop) => <div>{prop.charAt(0).toUpperCase() + prop.slice(1)}: {elem[prop]}</div>)}
+                    </TableCell>);
                   })}
                 </TableRow>
                 <TableRow>
@@ -181,13 +165,9 @@ export default function DisplaySchedule({
                       return <TableCell>-</TableCell>;
                     }
 
-                    return <TableCell>
-                      <div>Subj: {elem.name}</div>
-                      <div>Type: {elem.type}</div>
-                      <div>Location: {elem.location}</div>
-                      <div>{elem.weeks} weeks</div>
-                      <div>Teacher: {elem.professor}</div>
-                    </TableCell>
+                    return (<TableCell>
+                      {Object.keys(elem).map((prop) => <div>{prop.charAt(0).toUpperCase() + prop.slice(1)}: {elem[prop]}</div>)}
+                    </TableCell>);
                   })}
                 </TableRow>
                 <TableRow>
@@ -197,13 +177,9 @@ export default function DisplaySchedule({
                       return <TableCell>-</TableCell>;
                     }
 
-                    return <TableCell>
-                      <div>Subj: {elem.name}</div>
-                      <div>Type: {elem.type}</div>
-                      <div>Location: {elem.location}</div>
-                      <div>{elem.weeks} weeks</div>
-                      <div>Teacher: {elem.professor}</div>
-                    </TableCell>
+                    return (<TableCell>
+                      {Object.keys(elem).map((prop) => <div>{prop.charAt(0).toUpperCase() + prop.slice(1)}: {elem[prop]}</div>)}
+                    </TableCell>);
                   })}
                 </TableRow>
               </TableBody>

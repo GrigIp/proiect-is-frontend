@@ -12,7 +12,7 @@ import saga from './saga';
 import {createStructuredSelector} from "reselect";
 import jwt_decode from 'jwt-decode';
 import  CustomLoader  from '../../components/LoaderComponent/index.js';
-import { buildHourArray} from '../../utils/utils.js';
+import { buildHourArray } from '../../utils/utils.js';
 
 const buildDaysReducer = (day) => {
   return (r, e) => {
@@ -33,42 +33,55 @@ class Schedule extends React.Component {
   render() {
     if(Array.isArray(this.props.schedule) && this.props.schedule.length) {
       const { schedule, error } = this.props;
-      const {scheduleId: { group : {id, seriesID, year, faculty} }} = schedule[0];
+      const { scheduleId: { group : { id, seriesID, year, faculty }, teaching: { professor: { firstName, lastName }}}} = schedule[0];
+      const { roles: role } = jwt_decode(localStorage.getItem('token'));
       const mon = schedule.reduce(buildDaysReducer("MONDAY"), []);
       const tue = schedule.reduce(buildDaysReducer("TUESDAY"), []);
       const wed = schedule.reduce(buildDaysReducer("WEDNESDAY"),[]);
       const thu = schedule.reduce(buildDaysReducer("THURSDAY"),[]);
       const fry = schedule.reduce(buildDaysReducer("FRIDAY"),[]);
-      const fromEight = buildHourArray(mon, tue, wed, thu, fry, '08');
-      const fromTen = buildHourArray(mon, tue, wed, thu, fry, '10');
-      const fromTwelve = buildHourArray(mon, tue, wed, thu, fry, '12');
-      const fromTwo = buildHourArray(mon, tue, wed, thu, fry, '14');
-      const fromFour = buildHourArray(mon, tue, wed, thu, fry, '16');
-      const fromSix = buildHourArray(mon, tue, wed, thu, fry, '18');
+      const fromEight = buildHourArray(mon, tue, wed, thu, fry, '08', role);
+      const fromTen = buildHourArray(mon, tue, wed, thu, fry, '10', role);
+      const fromTwelve = buildHourArray(mon, tue, wed, thu, fry, '12', role);
+      const fromTwo = buildHourArray(mon, tue, wed, thu, fry, '14', role);
+      const fromFour = buildHourArray(mon, tue, wed, thu, fry, '16', role);
+      const fromSix = buildHourArray(mon, tue, wed, thu, fry, '18', role);
+      let fields;
+      if (role === 'STUDENT') {
+        fields = [
+          {
+            id: 'group',
+            value: id,
+            label: 'Group:',
+          },
+          {
+            id: 'series',
+            value: seriesID,
+            label: 'Series:',
+          },
+          {
+            id: 'year',
+            value: year,
+            label: 'Year:',
+          },
+          {
+            id: 'faculty',
+            value: faculty,
+            label: 'Faculty:',
+          }
+        ]
+      } else {
+        fields = [
+          {
+            id: 'name',
+            value: `${firstName}  ${lastName}`,
+            label: 'Name:',
+          },
+        ]
+      }
 
       return <DisplaySchedule error= ''
-                              fields={[
-                                {
-                                  id: 'group',
-                                  value: id,
-                                  label: 'Group:',
-                                },
-                                {
-                                  id: 'series',
-                                  value: seriesID,
-                                  label: 'Series:',
-                                },
-                                {
-                                  id: 'year',
-                                  value: year,
-                                  label: 'Year:',
-                                },
-                                {
-                                  id: 'faculty',
-                                  value: faculty,
-                                  label: 'Faculty:',
-                                }
-                              ]}
+                              fields={fields}
                               fromEight = {fromEight}
                               fromTen = {fromTen}
                               fromTwelve = {fromTwelve}
