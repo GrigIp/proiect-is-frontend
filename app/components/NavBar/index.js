@@ -62,7 +62,7 @@ export default function NavBar({ authenticated }) {
               <Button color="inherit" to="/" component={Link}>
                 Grades
               </Button>
-              <Button color="inherit" to="/" component={Link}>
+              <Button color="inherit" to="/schedule" component={Link}>
                 Schedule
               </Button>
               <Button color="inherit" to="/" component={Link}>
