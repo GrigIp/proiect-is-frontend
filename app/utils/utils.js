@@ -46,28 +46,28 @@ const buildHourArray = (arr0, arr1, arr2, arr3, arr4, time, role) => {
 
   subj = searchTime(time, arr1);
   if ( subj !== '-') {
-    hourArr.push(scheduleDataForTable(subj));
+    hourArr.push(scheduleDataForTable(subj, role));
   } else {
     hourArr.push(subj);
   }
 
   subj = searchTime(time, arr2);
   if ( subj !== '-') {
-    hourArr.push(scheduleDataForTable(subj));
+    hourArr.push(scheduleDataForTable(subj, role));
   } else {
     hourArr.push(subj);
   }
 
   subj = searchTime(time, arr3);
   if ( subj !== '-') {
-    hourArr.push(scheduleDataForTable(subj));
+    hourArr.push(scheduleDataForTable(subj, role));
   } else {
     hourArr.push(subj);
   }
 
   subj = searchTime(time, arr4);
   if ( subj !== '-') {
-    hourArr.push(scheduleDataForTable(subj));
+    hourArr.push(scheduleDataForTable(subj, role));
   } else {
     hourArr.push(subj);
   }

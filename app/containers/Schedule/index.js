@@ -14,6 +14,7 @@ import jwt_decode from 'jwt-decode';
 import  CustomLoader  from '../../components/LoaderComponent/index.js';
 import { buildHourArray } from '../../utils/utils.js';
 
+
 const buildDaysReducer = (day) => {
   return (r, e) => {
     if (e.day === day) {
