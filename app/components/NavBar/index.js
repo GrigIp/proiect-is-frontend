@@ -49,9 +49,6 @@ export default function NavBar({ authenticated }) {
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar className={classes.toolbar}>
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon/>
-              </IconButton>
               <img src={utcn} alt={'logo'} className={classes.image}/>
               <Typography variant="h6" className={classes.title}>
                 SINU
@@ -71,6 +68,9 @@ export default function NavBar({ authenticated }) {
               <Button color="inherit" to="/" component={Link}>
                 Subjects
               </Button>
+              <Button color="inherit" to="/signin" component={Link} onClick={() => { localStorage.removeItem('token'); }}>
+                Sign Out
+              </Button>
             </Toolbar>
           </AppBar>
         </div>
@@ -82,9 +82,6 @@ export default function NavBar({ authenticated }) {
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon/>
-              </IconButton>
               <img src={utcn} alt={'logo'} className={classes.image}/>
               <Typography variant="h6" className={classes.title}>
                 SINU
