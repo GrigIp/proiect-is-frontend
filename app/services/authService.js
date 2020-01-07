@@ -17,6 +17,14 @@ export class AuthService extends AbstractAPIService {
     return data;
   }
 
+  async register({ firstName, lastName, email, username, password, matchingPassword, role }) {
+    const body = { firstName, lastName, email, username, password, matchingPassword, role };
+
+    const { payload: data } = await this.post('/user/registration', body);
+
+    return data;
+  }
+
   getCurrentLevel() {
     return this.currentRole;
   }
