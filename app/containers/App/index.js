@@ -14,6 +14,9 @@ import SignIn from 'containers/SignIn/index';
 import NavBar from 'containers/NavBar/index';
 import HomePage from 'containers/HomePage/index';
 import Group from 'containers/Group/index';
+import Register from 'containers/Register/index';
+import Schedule from 'containers/Schedule/index';
+
 
 export default function App() {
 
@@ -22,8 +25,10 @@ export default function App() {
      <NavBar />
      <Switch>
        <Route exact path='/' component={HomePage} />
+       <Route path= '/register' component={Register} />
        <Route path='/signin' component={SignIn} />
        <Route exact path='/group' component={Group} />
+       <Route path='/schedule' component={Schedule}/>
      </Switch>
      <GlobalStyle/>
    </div>
