@@ -59,6 +59,7 @@ export default function DisplayPage({
                                       fields = [],
                                       tableHeader = [],
                                       tableData = [],
+                                      icon
                                     }) {
   const classes = useStyles();
 
@@ -69,7 +70,7 @@ export default function DisplayPage({
         <Paper className={classes.root}>
           <Grid container justify="center">
             <Avatar className={classes.redAvatar}>
-              <Looks5Icon />
+              {icon === 'five' ? <Looks5Icon /> : <ListIcon/> }
             </Avatar>
           </Grid>
           {fields.map(field => (

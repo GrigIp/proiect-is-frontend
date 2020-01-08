@@ -45,7 +45,8 @@ class Grades extends React.Component {
                         ]}
                         tableData={[{professorName: 'Eneia Todoran', subject: 'Inginerie software', grade: 5, date: '09.09.2019', semester: 2, year: 3}]}
                         tableHeader={['Professor Name', 'Subject', 'Grade', 'Date', 'Semester', 'Year']}
-                        tableTitle={'Grades'}/>;
+                        tableTitle={'Grades'}
+                        icon={'five'}/>;
   }
 }
 

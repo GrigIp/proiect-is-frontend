@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import jwt_decode from 'jwt-decode';
 
 import utcn from '../../images/utcn-logo.png';
 
@@ -18,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  toolbar: {
+    maxHeight: 40,
   },
   title: {
     flexGrow: 1,
@@ -37,30 +42,105 @@ const theme = createMuiTheme({
   }
 });
 
-export default function NavBar() {
+export default function NavBar({ authenticated }) {
   const classes = useStyles();
+  if (authenticated) {
+    const token = jwt_decode(localStorage.getItem('token'));
+    if (token.roles === 'STUDENT') {
+      return (
+        <ThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Toolbar className={classes.toolbar}>
+                <img src={utcn} alt={'logo'} className={classes.image}/>
+                <Typography variant="h6" className={classes.title}>
+                  SINU
+                </Typography>
+                <Button color="inherit" to="/" component={Link}>
+                  Home
+                </Button>
+                <Button color="inherit" to="/group" component={Link}>
+                  Group
+                </Button>
+                <Button color="inherit" to="/student/grades" component={Link}>
+                  Grades
+                </Button>
+                <Button color="inherit" to="/schedule" component={Link}>
+                  Schedule
+                </Button>
+                <Button color="inherit" to="/" component={Link}>
+                  Subjects
+                </Button>
+                <Button color="inherit" to="/signin" component={Link} onClick={() => {
+                  localStorage.removeItem('token');
+                }}>
+                  Sign Out
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </div>
+        </ThemeProvider>
+      );
+    } else {
+      return (
+        <ThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Toolbar className={classes.toolbar}>
+                <img src={utcn} alt={'logo'} className={classes.image}/>
+                <Typography variant="h6" className={classes.title}>
+                  SINU
+                </Typography>
+                <Button color="inherit" to="/" component={Link}>
+                  Home
+                </Button>
+                <Button color="inherit" to="/professor/grades" component={Link}>
+                  Grades
+                </Button>
+                <Button color="inherit" to="/schedule" component={Link}>
+                  Schedule
+                </Button>
+                <Button color="inherit" to="/" component={Link}>
+                  Subjects
+                </Button>
+                <Button color="inherit" to="/signin" component={Link} onClick={() => {
+                  localStorage.removeItem('token');
+                }}>
+                  Sign Out
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </div>
+        </ThemeProvider>
+      );
+    }
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <img src={utcn} alt={'logo'} className={classes.image}/>
+              <Typography variant="h6" className={classes.title}>
+                SINU
+              </Typography>
+              <Button color="inherit" to="/" component={Link}>
+                Home
+              </Button>
+              <Button color="inherit" to="/register" component={Link}>
+                Register
+              </Button>
+              <Button color="inherit" to="/signin" component={Link}>
+                Sign In
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </div>
+      </ThemeProvider>
+    );
+  }
+}
 
-  return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            <img src={utcn} alt={'logo'} className={classes.image}/>
-            <Typography variant="h6" className={classes.title}>
-              SINU
-            </Typography>
-            <Button color="inherit" to="/" component={Link} >
-              Home
-            </Button>
-            <Button color="inherit" to="/signin" component={Link} >
-              Sign In
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </div>
-    </ThemeProvider>
-  );
+NavBar.propTypes = {
+  authenticated : PropTypes.bool.isRequired,
 }
