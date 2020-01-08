@@ -1,4 +1,5 @@
 import { AbstractAPIService } from "./abstractAPIService";
+import jwt_decode from 'jwt-decode';
 
 export class AuthService extends AbstractAPIService {
   async authorize({ username, password, remember }) {
@@ -8,8 +9,6 @@ export class AuthService extends AbstractAPIService {
 
     if (data.token) {
       localStorage.setItem('token', data.token);
-
-      const user = data.user;
 
       this.currentRole = data.role;
     }

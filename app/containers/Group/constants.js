@@ -1,0 +1,4 @@
+export const FETCH_GROUP_REQUEST = 'app/Group/FETCH_GROUP_REQUEST';
+export const FETCH_GROUP_SUCCESS = 'app/Group/FETCH_GROUP_SUCCESS';
+export const FETCH_GROUP_FAILURE = 'app/Group/FETCH_GROUP_FAILURE';
+

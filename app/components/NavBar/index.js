@@ -41,41 +41,77 @@ const theme = createMuiTheme({
   }
 });
 
-export default function NavBar({ authenticated }) {
+export default function NavBar({ authenticated, role }) {
   const classes = useStyles();
   if (authenticated) {
-    return (
-      <ThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Toolbar className={classes.toolbar}>
-              <img src={utcn} alt={'logo'} className={classes.image}/>
-              <Typography variant="h6" className={classes.title}>
-                SINU
-              </Typography>
-              <Button color="inherit" to="/" component={Link}>
-                Home
-              </Button>
-              <Button color="inherit" to="/" component={Link}>
-                Group
-              </Button>
-              <Button color="inherit" to="/" component={Link}>
-                Grades
-              </Button>
-              <Button color="inherit" to="/schedule" component={Link}>
-                Schedule
-              </Button>
-              <Button color="inherit" to="/" component={Link}>
-                Subjects
-              </Button>
-              <Button color="inherit" to="/signin" component={Link} onClick={() => { localStorage.removeItem('token'); }}>
-                Sign Out
-              </Button>
-            </Toolbar>
-          </AppBar>
-        </div>
-      </ThemeProvider>
-    );
+    if (role === 'STUDENT') {
+      return (
+        <ThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Toolbar className={classes.toolbar}>
+                <img src={utcn} alt={'logo'} className={classes.image}/>
+                <Typography variant="h6" className={classes.title}>
+                  SINU
+                </Typography>
+                <Button color="inherit" to="/" component={Link}>
+                  Home
+                </Button>
+                <Button color="inherit" to="/group" component={Link}>
+                  Group
+                </Button>
+                <Button color="inherit" to="/" component={Link}>
+                  Grades
+                </Button>
+                <Button color="inherit" to="/schedule" component={Link}>
+                  Schedule
+                </Button>
+                <Button color="inherit" to="/" component={Link}>
+                  Subjects
+                </Button>
+                <Button color="inherit" to="/signin" component={Link} onClick={() => {
+                  localStorage.removeItem('token');
+                }}>
+                  Sign Out
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </div>
+        </ThemeProvider>
+      );
+    } else {
+      return (
+        <ThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <AppBar position="static">
+              <Toolbar className={classes.toolbar}>
+                <img src={utcn} alt={'logo'} className={classes.image}/>
+                <Typography variant="h6" className={classes.title}>
+                  SINU
+                </Typography>
+                <Button color="inherit" to="/" component={Link}>
+                  Home
+                </Button>
+                <Button color="inherit" to="/" component={Link}>
+                  Grades
+                </Button>
+                <Button color="inherit" to="/schedule" component={Link}>
+                  Schedule
+                </Button>
+                <Button color="inherit" to="/" component={Link}>
+                  Subjects
+                </Button>
+                <Button color="inherit" to="/signin" component={Link} onClick={() => {
+                  localStorage.removeItem('token');
+                }}>
+                  Sign Out
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </div>
+        </ThemeProvider>
+      );
+    }
   } else {
     return (
       <ThemeProvider theme={theme}>
