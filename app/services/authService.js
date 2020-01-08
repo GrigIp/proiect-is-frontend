@@ -9,7 +9,6 @@ export class AuthService extends AbstractAPIService {
 
     if (data.token) {
       localStorage.setItem('token', data.token);
-      console.log(jwt_decode(data.token));
 
       this.currentRole = data.role;
     }

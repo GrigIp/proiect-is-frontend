@@ -6,12 +6,13 @@ export class GroupService extends AbstractAPIService {
   }
 
   fetchGroup(id) {
-    return this.get(`/groups/${id}`);
+    return this.get(`/group/${id}`);
   }
 
-  fetchGroupByUsername(username) {
-    return this.get(`/groups/?username=${username}`);
+  fetchGroup() {
+    return this.get(`/group/`);
   }
+
 
   deleteGroup(id) {
     return this.delete(`/groups/${id}`);

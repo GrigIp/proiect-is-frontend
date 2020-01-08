@@ -9,7 +9,15 @@ function searchTime(time, myArray){
 }
 
 function scheduleDataForTable(obj, role) {
-  const {scheduleId : { group : { id, seriesID, year, faculty }, teaching : {class_name : {type, subject: { name }}, professor: {firstName, lastName}} }} = obj;
+  const { scheduleId : {
+                group : { id, seriesID, year, faculty },
+                teaching : {
+                  class_name:
+                    {type, subject: {name}},
+                  professor: {firstName, lastName}
+                }
+          }
+        } = obj;
   const { location, parity } = obj;
   let data;
   if (role === 'STUDENT') {

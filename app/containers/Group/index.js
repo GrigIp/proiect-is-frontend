@@ -4,58 +4,66 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import DisplayPage from "../../components/DisplayPage";
 import {errorSelector, groupSelector, studentsSelector} from "./selectors";
-import {fetchGroupByUsername, fetchStudentsByGroupId} from "./actions";
+import {fetchGroup} from "./actions";
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import {createStructuredSelector} from "reselect";
 import jwt_decode from 'jwt-decode';
+import CustomLoader from "../../components/LoaderComponent";
 
 
 class Group extends React.Component {
   componentDidMount() {
-    const { sub: username } = jwt_decode(localStorage.getItem('token'));
-    this.props.fetchGroupByUsername(username);
-    this.props.fetchStudentsByGroupId(this.props.group.id); // this could cause problems
+    this.props.fetchGroup();
   }
 
   render() {
-     return <DisplayPage error=''
-                         fields={[
-                           {
-                             id: 'group',
-                             value: "10",
-                             label: 'Group:',
-                           },
-                           {
-                             id: 'series',
-                             value: "2",
-                             label: 'Series:',
-                           },
-                           {
-                             id: 'year',
-                             value: "3",
-                             label: 'Year:',
-                           },
-                           {
-                             id: 'faculty',
-                             value: "AC",
-                             label: 'Faculty:',
-                           }
-                         ]}
-                         tableData={[{firstName: 'Grigor', lastName: 'Ipatiov', email: 'ipatiov.grigor@yahoo.com'}]}
-                         tableHeader={['First Name', 'Last Name', 'Email']}
-                         tableTitle={'Group'}/>;
+    console.log(this.props);
+    if (typeof this.props.group !== 'undefined') {
+      const { group : {id, year, faculty, series}, students } = this.props;
+      students.map(elem => delete elem.role);
+
+      return <DisplayPage error=''
+                          fields={[
+                            {
+                              id: 'group',
+                              value: id,
+                              label: 'Group:',
+                            },
+                            {
+                              id: 'series',
+                              value: series,
+                              label: 'Series:',
+                            },
+                            {
+                              id: 'year',
+                              value: year,
+                              label: 'Year:',
+                            },
+                            {
+                              id: 'faculty',
+                              value: faculty,
+                              label: 'Faculty:',
+                            }
+                          ]}
+                          tableData={students}
+                          tableHeader={['First Name', 'Last Name', 'Email', 'Username']}
+                          tableTitle={'Group'}/>;
+    } else {
+      return(
+        <CustomLoader />
+      );
+    }
   }
 }
 
 
 Group.propTypes = {
-  fetchGroupByUsername: PropTypes.func.isRequired,
-  fetchStudentsByGroupId: PropTypes.func.isRequired,
+  fetchGroup: PropTypes.func.isRequired,
   group: PropTypes.object,
-  students: PropTypes.array,
+  students : PropTypes.array,
   error: PropTypes.string,
 };
 
@@ -66,8 +74,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchGroupByUsername: username => dispatch(fetchGroupByUsername(username)),
-  fetchStudentsByGroupId: id => dispatch(fetchStudentsByGroupId(id)),
+  fetchGroup: () => dispatch(fetchGroup()),
 });
 
 const withConnect = connect(
