@@ -98,4 +98,8 @@ const createProfessorSubject = (elem) => {
   return professorSubject;
 }
 
-export {searchTime, scheduleDataForTable, buildHourArray, createProfessorSubject};
+const createStudentSubject = (elem) => {
+  return {...elem, semester: elem.semester.charAt(0) + elem.semester.slice(1).toLowerCase()};
+}
+
+export {searchTime, scheduleDataForTable, buildHourArray, createProfessorSubject, createStudentSubject};
