@@ -83,6 +83,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
+    "momentum": "^4.0.0",
     "normalizr": "^3.4.1",
     "pngquant-bin": "^5.0.2",
     "prop-types": "15.7.2",

@@ -20,7 +20,6 @@ class Group extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     if (typeof this.props.group !== 'undefined') {
       const { group : {id, year, faculty, series}, students } = this.props;
       students.map(elem => delete elem.role);

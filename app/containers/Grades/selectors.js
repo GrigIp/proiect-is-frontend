@@ -1,5 +1,7 @@
-const gradesSelector = state =>
-  state.gradesPage ? state.gradesPage.group : [];
+const gradesSelector = state => {
+
+  return state.gradesPage ? state.gradesPage.grades : [];
+}
 
 const errorSelector = state =>
   state.gradesPage ? state.gradesPage.error : '';

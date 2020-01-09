@@ -37,7 +37,9 @@ class Subject extends React.Component {
                           thirdYear={thirdYear}
                           forthYear={forthYear}
                           tableHeader={tableHeader}
-                          tableTitle={'Subjects'}/>;
+                          tableTitle={'Subjects'}
+                          icon={'list'}
+              />;
     } else {
       return(
         <CustomLoader />

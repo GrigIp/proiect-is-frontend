@@ -13,11 +13,12 @@ import GlobalStyle from '../../global-styles';
 import SignIn from 'containers/SignIn/index';
 import NavBar from 'containers/NavBar/index';
 import HomePage from 'containers/HomePage/index';
-import Grades from 'containers/Grades/index';
+import StudentGrades from 'containers/Grades/index';
 import Group from 'containers/Group/index';
 import Register from 'containers/Register/index';
 import Schedule from 'containers/Schedule/index';
 import Subject from 'containers/Subject/index';
+import ProfessorGrades from 'containers/ProfessorGrades/index';
 
 export default function App() {
 
@@ -28,7 +29,8 @@ export default function App() {
        <Route exact path='/' component={HomePage} />
        <Route path= '/register' component={Register} />
        <Route path='/signin' component={SignIn} />
-       <Route path='/student/grades' component={Grades} />
+       <Route path='/student/grades' component={StudentGrades} />
+       <Route path='/professor/grades' component={ProfessorGrades} />
        <Route exact path='/group' component={Group} />
        <Route path='/schedule' component={Schedule}/>
        <Route path='/subjects' component={Subject}/>
