@@ -1,0 +1,4 @@
+export const FETCH_SUBJECT_REQUEST = 'app/Subject/FETCH_SUBJECT_REQUEST';
+export const FETCH_SUBJECT_SUCCESS = 'app/Subject/FETCH_SUBJECT_SUCCESS';
+export const FETCH_SUBJECT_FAILURE = 'app/Subject/FETCH_SUBJECT_FAILURE';
+
