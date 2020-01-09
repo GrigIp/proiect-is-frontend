@@ -18,6 +18,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Looks5Icon from '@material-ui/icons/Looks5';
+
 
 const useStyles = makeStyles(theme => ({
   rootExpansion: {
@@ -70,7 +72,8 @@ export default function DisplayPage({
                                       firstYear = [],
                                       secondYear = [],
                                       thirdYear = [],
-                                      forthYear = []
+                                      forthYear = [],
+                                      icon = [],
                                     }) {
   const classes = useStyles();
 
@@ -81,7 +84,7 @@ export default function DisplayPage({
         <Paper className={classes.root}>
           <Grid container justify="center">
             <Avatar className={classes.redAvatar}>
-              <ListIcon />
+              {icon === 'five' ? <Looks5Icon /> : <ListIcon/> }
             </Avatar>
           </Grid>
           {fields.map(field => (
@@ -177,8 +180,8 @@ export default function DisplayPage({
                         <TableRow key={row.id}>
                           {Object.keys(row).map(key =>
                             key === 'id' ? null : (
-                              <TableCell key={row[key]}>{row[key]}</TableCell>
-                            ),
+                            <TableCell key={row[key]}>{row[key]}</TableCell>
+                          ),
                           )}
                         </TableRow>
                       ))}
@@ -290,5 +293,6 @@ DisplayPage.propTypes = {
   thirdYear: PropTypes.array,
   forthYear: PropTypes.array,
   tableHeader: PropTypes.array,
+  icon: PropTypes.string,
   fields: PropTypes.array,
 };

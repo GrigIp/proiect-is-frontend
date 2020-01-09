@@ -20,7 +20,6 @@ class Group extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     if (typeof this.props.group !== 'undefined') {
       const { group : {id, year, faculty, series}, students } = this.props;
       students.map(elem => delete elem.role);
@@ -50,7 +49,8 @@ class Group extends React.Component {
                           ]}
                           tableData={students}
                           tableHeader={['First Name', 'Last Name', 'Email', 'Username']}
-                          tableTitle={'Group'}/>;
+                          tableTitle={'Group'}
+                          icon={'list'}/>;
     } else {
       return(
         <CustomLoader />

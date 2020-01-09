@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import jwt_decode from 'jwt-decode';
 
 import utcn from '../../images/utcn-logo.png';
 
@@ -41,10 +42,11 @@ const theme = createMuiTheme({
   }
 });
 
-export default function NavBar({ authenticated, role }) {
+export default function NavBar({ authenticated }) {
   const classes = useStyles();
   if (authenticated) {
-    if (role === 'STUDENT') {
+    const token = jwt_decode(localStorage.getItem('token'));
+    if (token.roles === 'STUDENT') {
       return (
         <ThemeProvider theme={theme}>
           <div className={classes.root}>
@@ -60,7 +62,7 @@ export default function NavBar({ authenticated, role }) {
                 <Button color="inherit" to="/group" component={Link}>
                   Group
                 </Button>
-                <Button color="inherit" to="/" component={Link}>
+                <Button color="inherit" to="/student/grades" component={Link}>
                   Grades
                 </Button>
                 <Button color="inherit" to="/schedule" component={Link}>
@@ -92,7 +94,7 @@ export default function NavBar({ authenticated, role }) {
                 <Button color="inherit" to="/" component={Link}>
                   Home
                 </Button>
-                <Button color="inherit" to="/" component={Link}>
+                <Button color="inherit" to="/professor/grades" component={Link}>
                   Grades
                 </Button>
                 <Button color="inherit" to="/schedule" component={Link}>

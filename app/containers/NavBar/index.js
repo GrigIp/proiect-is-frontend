@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import jwt_decode from 'jwt-decode';
+
 
 class NavBar extends React.Component {
   state = {
@@ -21,18 +21,11 @@ class NavBar extends React.Component {
       this.setState({
         authenticated: Boolean(localStorage.getItem('token')),
       });
-      if (Boolean(localStorage.getItem( 'token'))) {
-        const token = localStorage.getItem('token');
-
-        this.setState({
-          role: jwt_decode(token).roles
-        });
-      }
     }
   }
 
   render() {
-      return <NavBarComponent authenticated={this.state.authenticated} role={this.state.role}/>;
+      return <NavBarComponent authenticated={this.state.authenticated}/>;
   }
 }
 
