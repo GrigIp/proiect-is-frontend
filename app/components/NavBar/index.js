@@ -66,7 +66,7 @@ export default function NavBar({ authenticated, role }) {
                 <Button color="inherit" to="/schedule" component={Link}>
                   Schedule
                 </Button>
-                <Button color="inherit" to="/" component={Link}>
+                <Button color="inherit" to="/subjects" component={Link}>
                   Subjects
                 </Button>
                 <Button color="inherit" to="/signin" component={Link} onClick={() => {
@@ -98,7 +98,7 @@ export default function NavBar({ authenticated, role }) {
                 <Button color="inherit" to="/schedule" component={Link}>
                   Schedule
                 </Button>
-                <Button color="inherit" to="/" component={Link}>
+                <Button color="inherit" to="/subjects" component={Link}>
                   Subjects
                 </Button>
                 <Button color="inherit" to="/signin" component={Link} onClick={() => {

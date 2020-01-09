@@ -83,4 +83,19 @@ const buildHourArray = (arr0, arr1, arr2, arr3, arr4, time, role) => {
   return hourArr;
 };
 
-export {searchTime, scheduleDataForTable, buildHourArray};
+const createProfessorSubject = (elem) => {
+  const professorSubject = { subject: elem.class_name.subject.name,
+    type: elem.class_name.type.charAt(0) + elem.class_name.type.slice(1).toLowerCase(),
+    year: elem.class_name.subject.year,
+    semester: elem.class_name.subject.semester.charAt(0) + elem.class_name.subject.semester.slice(1).toLowerCase(),
+    series: elem.group.series,
+    group: elem.group.id};
+
+  if (professorSubject.type === 'Course') {
+    delete professorSubject.group;
+  }
+
+  return professorSubject;
+}
+
+export {searchTime, scheduleDataForTable, buildHourArray, createProfessorSubject};

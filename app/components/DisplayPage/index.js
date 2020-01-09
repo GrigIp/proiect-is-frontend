@@ -66,25 +66,25 @@ export default function DisplayPage({
       <CssBaseline />
       <main>
         <Paper className={classes.root}>
-            <Grid container justify="center">
-              <Avatar className={classes.redAvatar}>
-                <ListIcon />
-              </Avatar>
+          <Grid container justify="center">
+            <Avatar className={classes.redAvatar}>
+              <ListIcon />
+            </Avatar>
+          </Grid>
+          {fields.map(field => (
+            <Grid
+              container
+              direction="row"
+              spacing={0}
+              justify="flex-start"
+              key={field.id}
+              className={classes.infoGrid}
+            >
+              <Typography variant="body1" color="inherit" noWrap>
+                {field.label + '  ' + field.value}
+              </Typography>
             </Grid>
-            {fields.map(field => (
-              <Grid
-                container
-                direction="row"
-                spacing={0}
-                justify="flex-start"
-                key={field.id}
-                className={classes.infoGrid}
-              >
-                  <Typography variant="body1" color="inherit" noWrap>
-                    {field.label + '  ' + field.value}
-                  </Typography>
-              </Grid>
-            ))}
+          ))}
         </Paper>
         {tableData.length === 0 ? (
           <Typography

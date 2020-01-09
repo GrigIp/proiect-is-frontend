@@ -16,7 +16,7 @@ import HomePage from 'containers/HomePage/index';
 import Group from 'containers/Group/index';
 import Register from 'containers/Register/index';
 import Schedule from 'containers/Schedule/index';
-
+import Subject from 'containers/Subject/index';
 
 export default function App() {
 
@@ -29,6 +29,7 @@ export default function App() {
        <Route path='/signin' component={SignIn} />
        <Route exact path='/group' component={Group} />
        <Route path='/schedule' component={Schedule}/>
+       <Route path='/subjects' component={Subject}/>
      </Switch>
      <GlobalStyle/>
    </div>
